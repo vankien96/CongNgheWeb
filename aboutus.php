@@ -25,12 +25,44 @@
         </ul>
       </div>
     </nav>
-  <div id="header" align="center">
-    <div id="SearchType" class="form-group" style="width: 400px" align="center">
-        <input class = "form-control" type="text" name="search" placeholder="Bạn muốn ăn gì hôm nay nào?">
-        <button class="btn btn-primary" type="submit" value="submit" name="submit" style="margin-top: 10px">Tìm Kiếm</button>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="images/1.jpg" alt="Los Angeles" height="150" width="1000">
+        </div>
+
+        <div class="item">
+          <img src="images/2.jpg" alt="Chicago" height="150" width="1000">
+        </div>
+
+        <div class="item">
+          <img src="images/3.jpg" alt="New York" height="150" width="1000">
+        </div>
+
+        <div class="item">
+          <img src="images/4.jpg" alt="New York" height="150" width="1000">
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
-  </div>
 <div id="center">
 
   <h1>VỀ LK Restaurant</h1>
@@ -46,16 +78,12 @@
 <div id="center">
   <h1>Contact Us</h1>
   <div style="border:#66ff99 solid 1px;padding:4px 6px 2px 6px">
-  <table width="500" height="50">
-    <tr><td rowspan="11" style="margin-right: 16px"></td></tr>
-    <tr><td>LK Restaurant</td></tr>
-    <tr><td>856 Tôn Đức Thắng</td></tr>
-    <tr><td>Phường Hòa Khánh</td></tr>
-    <tr><td>Quận Liên Chiểu</td></tr>
-    <tr><td>Tp. Đà Nẵng</td></tr>
-    <tr><td>Hotlines: 05113568954/5/6/7/8</td></tr>
-    <tr><td>Mobiles: 0901234567/0909909909</td></tr>
-    <tr><td>Email: lk@restaurant.cu.to</td></tr>
+  <table height="50" align="center" style="text-align: center;">
+    <tr><td><h4>LK Restaurant - Best Restaurant In DaNang</h4></td></tr>
+    <tr><td><h5>856 Tôn Đức Thắng, Phường Hòa Khánh, Quận Liên Chiểu, Đà Nẵng</h5></td></tr>
+    <tr><td><h5>Hotlines: 02363568954</h5></td></tr>
+    <tr><td><h5>Mobiles: 0901234567/0909909909</h5></td></tr>
+    <tr><td><h5>Email: lk@restaurant.cu.to</h5></td></tr>
   </table>
   </div>
 </div>
