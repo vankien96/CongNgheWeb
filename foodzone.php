@@ -21,17 +21,8 @@ or die("A problem has occured ... \n" . "Our team is working on it at the moment
 ?>
 <?php
     if(isset($_POST['Submit'])){
-        //Function to sanitize values received from the form. Prevents SQL injection
-        function clean($str) {
-            $str = @trim($str);
-            if(get_magic_quotes_gpc()) {
-                $str = stripslashes($str);
-            }
-            return mysql_real_escape_string($str);
-        }
-        //get category id
-        $search = clean($_POST['search']);
-        $id = clean($_POST['category']);
+        $search = $_POST['search'];
+        $id = $_POST['category'];
         if($id == 0) $id = "";
         
         //selecting all records from the food_details and categories tables based on category id. Return an error if there are no records in the table
@@ -159,7 +150,7 @@ or die("A problem has occured ... \n" . "Our team is working on it at the moment
                     echo "<td>" . $row['food_description']."</td>";
                     echo "<td>" . $row['category_name']."</td>";
                     echo "<td>" . $row['food_price']."" . $symbol['currency_symbol']. "</td>";
-                    echo '<td><a href="cart-exec.php?id=' . $row['food_id'] . '">Đặt</a></td>';
+                    echo '<td><a href="add-to-cart.php?id=' . $row['food_id'] . '">Đặt</a></td>';
                     echo "</td>";
                     echo "</tr>";
                     }      
