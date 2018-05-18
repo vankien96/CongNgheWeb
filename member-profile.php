@@ -176,7 +176,7 @@
               <input type="password" name="rpassword" id="rpassword" class="form-control" required>
             </tr>
             <tr>
-              <button type="button" class="btn btn-primary" onclick="changePassword()">Đổi</button>
+              <button type="button" class="btn btn-primary" onclick="changePassword()" style="margin-top: 10px">Đổi</button>
             </tr>
           </table>
         </div>
@@ -196,7 +196,7 @@
               <input type="text" id= "phone" name="phone" class="form-control" required value="<?php echo $billingInfo['phone'] ?>">
             </tr>
             <tr>
-              <button id="update" class="btn btn-primary" onclick="changeAddress()">Update</button>
+              <button id="update" class="btn btn-primary" onclick="changeAddress()" style="margin-top: 10px">Update</button>
             </tr>
           </table>
         </div>

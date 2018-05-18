@@ -111,7 +111,7 @@
         </div>
         <div id="error"></div>
         <div style="margin-top: 8px; margin-bottom: 8px">
-          <a href="password-reset.php">Quên mật khẩu?</a>
+          <a href="reset-password.php">Quên mật khẩu?</a>
           <a href="register.php">Tạo tài khoản?</a>
         </div>
         <div style="margin-bottom: 8px;">

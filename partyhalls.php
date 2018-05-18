@@ -94,7 +94,7 @@ require_once('connection/config.php');
       </a>
     </div>
 <div id="center">
-<h1>RESERVE PARTY HALL(S)</h1>
+<h1>ĐẶT CHỖ HỘI TRƯỜNG</h1>
   <div style="border:#66ff99 solid 1px;padding:4px 6px 2px 6px">
 <a href="member-profile.php">Thông tin cá nhân</a> | <a href="cart.php">Đơn hàng[<?php echo $num_items;?>]</a> |  <a href="inbox.php">Tin nhắn[<?php echo $num_messages;?>]</a> | <a href="tables.php">Bàn</a> | <a href="partyhalls.php">Hội trường</a> | <a href="ratings.php">Đánh giá</a> | <a href="logout.php">Đăng xuất</a>
 <p>&nbsp;</p>
