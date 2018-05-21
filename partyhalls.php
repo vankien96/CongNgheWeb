@@ -146,9 +146,9 @@ require_once('connection/config.php');
             </td>
         </tr>
         <tr>
-            <td><b>Ngày:</b></td><td><input type="date" name="date" id="date" class="form-control" required/></td></tr>
-        <tr>
-            <td><b>Thời gian:</b></td><td><input type="time" name="time" id="time" class="form-control" required/>
+            <td><b>Ngày:</b></td><td><input type="date" name="date" id="date" class="form-control" style="margin-top: 10px" required/></td></tr>
+        <tr style="margin-top: 10px">
+            <td><b>Thời gian:</b></td><td><input type="time" name="time" id="time" class="form-control" style="margin-top: 10px" required/>
             </td>
         </tr>
         <tr>

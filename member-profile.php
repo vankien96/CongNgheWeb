@@ -168,11 +168,11 @@
               <input type="password" name="opassword" id="opassword" class="form-control" required>
             </tr>
             <tr>
-              <label for="password">Mật khẩu mới</label>
+              <label for="password" style="margin-top: 10px">Mật khẩu mới</label>
               <input type="password" name="password" id="password" class="form-control" required>
             </tr>
             <tr>
-              <label for="rpassword">Nhập lại mật khẩu</label>
+              <label for="rpassword" style="margin-top: 10px">Nhập lại mật khẩu</label>
               <input type="password" name="rpassword" id="rpassword" class="form-control" required>
             </tr>
             <tr>
@@ -188,11 +188,11 @@
               <input type="text" id= "address" name="address" class="form-control" required value="<?php echo $billingInfo['address']?>">
             </tr>
             <tr>
-              <label for="city">Thành phố</label>
+              <label for="city" style="margin-top: 10px">Thành phố</label>
               <input type="text" id= "city" name="city" class="form-control" required value="<?php echo $billingInfo['city']?>">
             </tr>
             <tr>
-              <label for="phone">Số điện thoại</label>
+              <label for="phone" style="margin-top: 10px">Số điện thoại</label>
               <input type="text" id= "phone" name="phone" class="form-control" required value="<?php echo $billingInfo['phone'] ?>">
             </tr>
             <tr>
