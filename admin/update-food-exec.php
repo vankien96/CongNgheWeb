@@ -3,7 +3,7 @@
     session_start();
     
     //Include database connection details
-    require_once('connection/config.php');
+    include 'connection/config.php';
     
     
     
@@ -21,15 +21,15 @@
     $target = $target . basename( $_FILES['photo']['name']); 
     
     //Sanitize the POST values
+    $id = $_POST['id'];
     $name = $_POST['name'];
     $description = $_POST['description'];
     $price = $_POST['price'];
-    $start_date = $_POST['start_date'];
-    $end_date = $_POST['end_date'];
+    $category = $_POST['category'];
     $photo = $_FILES['photo']['name'];
 
     //Create INSERT query
-    $qry = "INSERT INTO specials(special_name, special_description, special_price, special_start_date, special_end_date, special_photo) VALUES('$name','$description','$price','$start_date','$end_date','$photo')";
+    $qry = "UPDATE food_details SET food_name='$name',food_description='$description',food_price='$price',food_category='$category',food_photo='$photo' WHERE food_id='$id'";
     $result = mysqli_query($db,$qry);
     
     //Check whether the query was successful or not
@@ -45,7 +45,7 @@
              //Gives an error if its not okay 
              echo "Sorry, there was a problem uploading your photo. "  . $_FILES["photo"]["error"]; 
          }
-        header("location: specials.php");
+        header("location: foods.php");
         exit();
     }else {
         die("Query failed " . mysqli_error($db));

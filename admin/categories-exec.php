@@ -13,21 +13,19 @@
         if(get_magic_quotes_gpc()) {
             $str = stripslashes($str);
         }
-        return mysql_real_escape_string($str);
+        return mysqli_real_escape_string($str);
     }
     
     //Sanitize the POST values
-    $name = clean($_POST['name']);
+    $name = $_POST['name'];
 
     //Create INSERT query
     $qry = "INSERT INTO categories(category_name) VALUES('$name')";
-    $result = @mysql_query($qry);
-    
+    $result = mysqli_query($db,$qry);
     //Check whether the query was successful or not
     if($result) {
-        header("location: options.php");
-        exit();
+        header("location: categories.php");
     }else {
-        die("Query failed " . mysql_error());
+        die("Query failed " . mysqli_error($db));
     }
  ?>

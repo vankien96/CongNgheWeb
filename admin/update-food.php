@@ -3,7 +3,7 @@
 ?>
 <?php
 //checking connection and connecting to a database
-require_once('connection/config.php');
+    include 'connection/config.php';
 
     // check if the 'id' variable is set in URL
      if (isset($_GET['id']))
@@ -11,14 +11,8 @@ require_once('connection/config.php');
          // get id value
          $id = $_GET['id'];
          
-         // delete the entry
-         // $result = mysql_query("DELETE FROM food_details WHERE food_id='$id'")
-         // or die("There was a problem while removing the food ... \n" . mysql_error()); 
-         
-         // // redirect back to the foods page
-         // header("Location: foods.php");
-         $result = mysql_query("SELECT * FROM food_details WHERE food_id='$id'");
-         $row1 = mysql_fetch_array($result);
+         $result = mysqli_query($db,"SELECT * FROM food_details WHERE food_id='$id'");
+         $row1 = mysqli_fetch_array($result);
 
         if(isset($_POST['Submit']))
         {
@@ -28,7 +22,7 @@ require_once('connection/config.php');
                 if(get_magic_quotes_gpc()) {
                     $str = stripslashes($str);
                 }
-                return mysql_real_escape_string($str);
+                return mysqli_real_escape_string($str);
             }
             
             //setup a directory where images will be saved 
@@ -44,7 +38,7 @@ require_once('connection/config.php');
 
             //Create INSERT query
             $qry = "UPDATE food_details SET food_name='$name',food_description='$description',food_price='$price',food_category='$category',food_photo='$photo' WHERE food_id='$id'";
-            $result = @mysql_query($qry);
+            $result = mysqli_query($db,$qry);
             
             //Check whether the query was successful or not
             if($result) {
@@ -62,7 +56,7 @@ require_once('connection/config.php');
                 header("location: foods.php");
                 exit();
             }else {
-                die("Query failed " . mysql_error());
+                die("Query failed " . mysqli_error($db));
             } 
          }
         }
@@ -74,14 +68,14 @@ require_once('connection/config.php');
 ?>
 <?php
     //retrive categories from the categories table
-    $categories=mysql_query("SELECT * FROM categories")
-    or die("There are no records to display ... \n" . mysql_error()); 
+    $categories=mysqli_query($db,"SELECT * FROM categories")
+    or die("There are no records to display ... \n" . mysqli_error($db)); 
 ?>
 <?php
     //retrive a currency from the currencies table
     //define a default value for flag_1
     $flag_1 = 1;
-    $currencies=mysql_query("SELECT * FROM currencies WHERE flag='$flag_1'")
+    $currencies=mysqli_query($db,"SELECT * FROM currencies WHERE flag='$flag_1'")
     or die("A problem has occured ... \n" . "Our team is working on it at the moment ... \n" . "Please check back after few hours."); 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -100,10 +94,11 @@ require_once('connection/config.php');
 <a href="profile.php">Thông tin cá nhân</a> | <a href="categories.php">Thể loại</a> | <a href="foods.php">Thức ăn</a> | <a href="accounts.php">Tài khoản</a> | <a href="orders.php">Đơn hàng</a> | <a href="reservations.php">Đặt bàn/hội trường</a> | <a href="specials.php">Ưu đãi</a> | <a href="allocation.php">Nhân viên</a> | <a href="messages.php">Tin nhắn</a> | <a href="options.php">Tùy chỉnh</a> | <a href="logout.php">Đăng xuất</a>
 </div>
 <div id="container">
-<table width="760" align="center">
+<table  align="center">
 <CAPTION><h3>THÊM MỚI MỘT THỨC ĂN</h3></CAPTION>
-<form name="foodsForm" id="foodsForm" method="post" enctype="multipart/form-data" onsubmit="return foodsValidate(this)">
+<form name="foodsForm" id="foodsForm" method="post" action="update-food-exec.php" enctype="multipart/form-data" onsubmit="return foodsValidate(this)">
 <tr>
+    <th>ID</th>
     <th>Tên</th>
     <th>Miêu tả</th>
     <th>Giá</th>
@@ -112,6 +107,7 @@ require_once('connection/config.php');
     <th>Action(s)</th>
 </tr>
 <tr>
+      <td><input type="text" name="id" id="id" class="textfield" readonly="true" value="<?php echo $row1['food_id'] ?>" /></td>
     <td><input type="text" name="name" id="name" class="textfield" value="<?php echo $row1['food_name'] ?>" /></td>
     <td><textarea name="description" id="description" class="textfield" rows="2" cols="15"><?php echo $row1['food_description'] ?></textarea></td>
     <td><input type="text" name="price" id="price" class="textfield" value="<?php echo $row1['food_price'] ?>"/></td>
@@ -119,7 +115,7 @@ require_once('connection/config.php');
     <option value="select">- chọn một thể loại -
     <?php 
     //loop through categories table rows
-    while ($row=mysql_fetch_array($categories)){
+    while ($row=mysqli_fetch_array($categories)){
     echo "<option value=$row[category_id]>$row[category_name]"; 
     }
     ?>

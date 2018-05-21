@@ -12,7 +12,7 @@
         if(get_magic_quotes_gpc()) {
             $str = stripslashes($str);
         }
-        return mysql_real_escape_string($str);
+        return mysqli_real_escape_string($str);
     }
     
     // check if Delete is set in POST
@@ -21,8 +21,8 @@
          $partyhall_id = clean($_POST['partyhall']);
          
          // delete the entry
-         $result = mysql_query("DELETE FROM partyhalls WHERE partyhall_id='$partyhall_id'")
-         or die("There was a problem while deleting the partyhall ... \n" . mysql_error()); 
+         $result = mysqli_query($db,"DELETE FROM partyhalls WHERE partyhall_id='$partyhall_id'")
+         or die("There was a problem while deleting the partyhall ... \n" . mysqli_error($db)); 
          
          // redirect back to options
          header("Location: options.php");

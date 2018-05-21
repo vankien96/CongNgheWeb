@@ -13,7 +13,7 @@
         if(get_magic_quotes_gpc()) {
             $str = stripslashes($str);
         }
-        return mysql_real_escape_string($str);
+        return mysqli_real_escape_string($str);
     }
     
     //setup a directory where images will be saved 
@@ -21,15 +21,15 @@
     $target = $target . basename( $_FILES['photo']['name']); 
     
     //Sanitize the POST values
-    $name = clean($_POST['name']);
-    $description = clean($_POST['description']);
-    $price = clean($_POST['price']);
-    $category = clean($_POST['category']);
-    $photo = clean($_FILES['photo']['name']);
+    $name = $_POST['name'];
+    $description = $_POST['description'];
+    $price = $_POST['price'];
+    $category = $_POST['category'];
+    $photo = $_FILES['photo']['name'];
 
     //Create INSERT query
     $qry = "INSERT INTO food_details(food_name, food_description, food_price, food_photo, food_category) VALUES('$name','$description','$price','$photo','$category')";
-    $result = @mysql_query($qry);
+    $result = mysqli_query($db,$qry);
     
     //Check whether the query was successful or not
     if($result) {
@@ -47,6 +47,6 @@
         header("location: foods.php");
         exit();
     }else {
-        die("Query failed " . mysql_error());
+        die("Query failed " . mysqli_error($db));
     } 
  ?>

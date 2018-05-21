@@ -7,12 +7,12 @@ require_once('connection/config.php');
 
     //retrive promotions from the specials table
     $result=mysqli_query($db,"SELECT * FROM food_details,categories WHERE food_details.food_category=categories.category_id")
-    or die("There are no records to display ... \n" . mysql_error($db)); 
+    or die("There are no records to display ... \n" . mysqli_error($db)); 
 ?>
 <?php
     //retrive categories from the categories tabl
     $categories=mysqli_query($db,"SELECT * FROM categories")
-    or die("There are no records to display ... \n" . mysql_error($db)); 
+    or die("There are no records to display ... \n" . mysqli_error($db)); 
 ?>
 <?php
     //retrive a currency from the currencies table
@@ -39,7 +39,7 @@ require_once('connection/config.php');
 <div id="container">
 <table width="760" align="center">
 <CAPTION><h3>THÊM MỚI MỘT THỨC ĂN</h3></CAPTION>
-<form name="foodsForm" id="foodsForm" method="post" enctype="multipart/form-data" onsubmit="return foodsValidate(this)">
+<form name="foodsForm" id="foodsForm" method="post" action="foods-exec.php" enctype="multipart/form-data" onsubmit="return foodsValidate(this)">
 <tr>
     <th>Tên</th>
     <th>Miêu tả</th>

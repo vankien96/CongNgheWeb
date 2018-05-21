@@ -13,8 +13,8 @@
          $id = $_GET['id'];
          
          // delete the entry
-         $result = mysql_query("DELETE FROM specials WHERE special_id='$id'")
-         or die("There was a problem while removing the promo ... \n" . mysql_error()); 
+         $result = mysqli_query($db,"DELETE FROM specials WHERE special_id='$id'")
+         or die("There was a problem while removing the promo ... \n" . mysqli_error($db)); 
          
          // redirect back to the specials page
          header("Location: specials.php");

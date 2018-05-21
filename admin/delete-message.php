@@ -13,8 +13,8 @@
          $id = $_GET['id'];
          
          // delete the entry
-         $result = mysql_query("DELETE FROM messages WHERE message_id='$id'")
-         or die("There was a problem while removing the message ... \n" . mysql_error()); 
+         $result = mysqli_query($db,"DELETE FROM messages WHERE message_id='$id'")
+         or die("There was a problem while removing the message ... \n" . mysqli_error($db)); 
          
          // redirect back to the messages page
          header("Location: messages.php");

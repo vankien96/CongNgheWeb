@@ -13,8 +13,8 @@
          $id = $_GET['id'];
          
          // delete the entry
-         $result = mysql_query("DELETE FROM orders_details WHERE order_id='$id'")
-         or die("There was a problem while deleting the order ... \n" . mysql_error()); 
+         $result = mysqli_query($db,"DELETE FROM orders_details WHERE order_id='$id'")
+         or die("There was a problem while deleting the order ... \n" . mysqli_error($db)); 
          
          // redirect back to the orders
          header("Location: orders.php");

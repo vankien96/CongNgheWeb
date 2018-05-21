@@ -13,8 +13,8 @@
          $id = $_GET['id'];
          
          // delete the entry
-         $result = mysql_query("DELETE FROM food_details WHERE food_id='$id'")
-         or die("There was a problem while removing the food ... \n" . mysql_error()); 
+         $result = mysqli_query($db,"DELETE FROM food_details WHERE food_id='$id'")
+         or die("There was a problem while removing the food ... \n" . mysqli_error($db)); 
          
          // redirect back to the foods page
          header("Location: foods.php");

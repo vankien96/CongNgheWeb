@@ -13,7 +13,7 @@
      $id = $_GET['id'];
      
      // delete the entry
-     $result = mysql_query("DELETE FROM reservations_details WHERE ReservationID='$id'")
+     $result = mysqli_query($db,"DELETE FROM reservations_details WHERE ReservationID='$id'")
      or die("The reservation does not exist ... \n"); 
      
      // redirect back to the reservations 

@@ -13,7 +13,7 @@
          $id = $_GET['id'];
          
          // delete the entry
-         $result = mysql_query("DELETE FROM members WHERE member_id='$id'")
+         $result = mysqli_query($db,"DELETE FROM members WHERE member_id='$id'")
          or die("The member does not exist ... \n"); 
          
          // redirect back to the accounts page
