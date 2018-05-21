@@ -6,8 +6,8 @@
 require_once('connection/config.php');
 
 //retrive categories from the categories table
-$result=mysql_query("SELECT * FROM categories")
-or die("There are no records to display ... \n" . mysql_error()); 
+$result=mysqli_query($db,"SELECT * FROM categories")
+or die("There are no records to display ... \n" . mysql_error($db)); 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -48,14 +48,14 @@ or die("There are no records to display ... \n" . mysql_error());
 
 <?php
 //loop through all table rows
-while ($row=mysql_fetch_array($result)){
+while ($row=mysqli_fetch_array($result)){
 echo "<tr>";
 echo "<td>" . $row['category_name']."</td>";
 echo '<td><a href="delete-category.php?id=' . $row['category_id'] . '">Xóa thể loại</a></td>';
 echo "</tr>";
 }
-mysql_free_result($result);
-mysql_close($link);
+mysqli_free_result($result);
+mysqli_close($db);
 ?>
 </table>
 <hr>

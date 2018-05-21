@@ -6,44 +6,44 @@
 require_once('connection/config.php');
 
 //retrive categories from the categories table
-$categories=mysql_query("SELECT * FROM categories")
-or die("There are no records to display ... \n" . mysql_error()); 
+$categories=mysqli_query($db,"SELECT * FROM categories")
+or die("There are no records to display ... \n" . mysqli_error($db)); 
 
 //retrieve quantities from the quantities table
-$quantities=mysql_query("SELECT * FROM quantities")
-or die("Something is wrong ... \n" . mysql_error()); 
+$quantities=mysqli_query($db,"SELECT * FROM cart_details")
+or die("Something is wrong ... \n" . mysqli_error($db)); 
 
 //retrieve currencies from the currencies table (deleting)
-$currencies=mysql_query("SELECT * FROM currencies")
-or die("Something is wrong ... \n" . mysql_error()); 
+$currencies=mysqli_query($db,"SELECT * FROM currencies")
+or die("Something is wrong ... \n" . mysqli_error($db)); 
 
 //retrieve currencies from the currencies table (updating)
-$currencies_1=mysql_query("SELECT * FROM currencies")
-or die("Something is wrong ... \n" . mysql_error()); 
+$currencies_1=mysqli_query($db,"SELECT * FROM currencies")
+or die("Something is wrong ... \n" . mysqli_error($db)); 
 
 //retrieve polls from the ratings table
-$ratings=mysql_query("SELECT * FROM ratings")
-or die("Something is wrong ... \n" . mysql_error());
+$ratings=mysqli_query($db,"SELECT * FROM ratings")
+or die("Something is wrong ... \n" . mysql_error($db));
 
 //retrieve timezones from the timezones table (deleting)
-$timezones=mysql_query("SELECT * FROM timezones")
-or die("Something is wrong ... \n" . mysql_error()); 
+$timezones=mysqli_query($db,"SELECT * FROM orders_details")
+or die("Something is wrong ... \n" . mysqli_error($db)); 
 
 //retrieve timezones from the timezones table (updating)
-$timezones_1=mysql_query("SELECT * FROM timezones")
-or die("Something is wrong ... \n" . mysql_error());  
+$timezones_1=mysqli_query($db,"SELECT * FROM orders_details")
+or die("Something is wrong ... \n" . mysqli_error($db));  
 
 //retrieve tables from the tables table
-$tables=mysql_query("SELECT * FROM tables")
-or die("Something is wrong ... \n" . mysql_error());
+$tables=mysqli_query($db,"SELECT * FROM tables")
+or die("Something is wrong ... \n" . mysqli_error($db));
 
 //retrieve partyhalls from the partyhalls table
-$partyhalls=mysql_query("SELECT * FROM partyhalls")
-or die("Something is wrong ... \n" . mysql_error());
+$partyhalls=mysqli_query($db,"SELECT * FROM partyhalls")
+or die("Something is wrong ... \n" . mysqli_error($db));
 
 //retrieve questions from the questions table
-$questions=mysql_query("SELECT * FROM questions")
-or die("Something is wrong ... \n" . mysql_error());
+$questions=mysqli_query($db,"SELECT * FROM questions")
+or die("Something is wrong ... \n" . mysqli_error($db));
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -83,7 +83,7 @@ or die("Something is wrong ... \n" . mysql_error());
         <option value="select">- chọn thể loại -
         <?php 
         //loop through categories table rows
-        while ($row=mysql_fetch_array($categories)){
+        while ($row=mysqli_fetch_array($categories)){
         echo "<option value=$row[category_id]>$row[category_name]"; 
         }
         ?>
@@ -120,8 +120,8 @@ or die("Something is wrong ... \n" . mysql_error());
         <option value="select">- chọn số lượng -
         <?php 
         //loop through quantities table rows
-        while ($row=mysql_fetch_array($quantities)){
-        echo "<option value=$row[quantity_id]>$row[quantity_value]"; 
+        while ($row=mysqli_fetch_array($quantities)){
+        echo "<option value=$row[quantity]>$row[quantity]"; 
         }
         ?>
         </select></td>
@@ -157,7 +157,7 @@ or die("Something is wrong ... \n" . mysql_error());
         <option value="select">- chọn tiền tệ -
         <?php 
         //loop through currencies table rows
-        while ($row=mysql_fetch_array($currencies)){
+        while ($row=mysqli_fetch_array($currencies)){
         echo "<option value=$row[currency_id]>$row[currency_symbol]"; 
         }
         ?>
@@ -176,7 +176,7 @@ or die("Something is wrong ... \n" . mysql_error());
         <option value="select">- chọn 1 tiền tệ -
         <?php 
         //loop through currencies table rows
-        while ($row=mysql_fetch_array($currencies_1)){
+        while ($row=mysqli_fetch_array($currencies_1)){
         echo "<option value=$row[currency_id]>$row[currency_symbol]"; 
         }
         ?>
@@ -213,7 +213,7 @@ or die("Something is wrong ... \n" . mysql_error());
         <option value="select">- chọn cấp độ -
         <?php 
         //loop through ratings table rows
-        while ($row=mysql_fetch_array($ratings)){
+        while ($row=mysqli_fetch_array($ratings)){
         echo "<option value=$row[rate_id]>$row[rate_name]"; 
         }
         ?>
@@ -250,8 +250,8 @@ or die("Something is wrong ... \n" . mysql_error());
         <option value="select">- chọn thời gian -
         <?php 
         //loop through timezones table rows
-        while ($row=mysql_fetch_array($timezones)){
-        echo "<option value=$row[timezone_id]>$row[timezone_reference]"; 
+        while ($row=mysqli_fetch_array($timezones)){
+        echo "<option value=$row[delivery_date]>$row[delivery_date]"; 
         }
         ?>
         </select></td>
@@ -269,8 +269,8 @@ or die("Something is wrong ... \n" . mysql_error());
         <option value="select">- chọn múi giờ -
         <?php 
         //loop through timezones table rows
-        while ($row=mysql_fetch_array($timezones_1)){
-        echo "<option value=$row[timezone_id]>$row[timezone_reference]"; 
+        while ($row=mysqli_fetch_array($timezones_1)){
+        echo "<option value=$row[time_stamp]>$row[time_stamp]"; 
         }
         ?>
         </select></td>
@@ -306,7 +306,7 @@ or die("Something is wrong ... \n" . mysql_error());
         <option value="select">- chọn bàn -
         <?php 
         //loop through tables table rows
-        while ($row=mysql_fetch_array($tables)){
+        while ($row=mysqli_fetch_array($tables)){
         echo "<option value=$row[table_id]>$row[table_name]"; 
         }
         ?>
@@ -343,7 +343,7 @@ or die("Something is wrong ... \n" . mysql_error());
         <option value="select">- chọn hội trường -
         <?php 
         //loop through partyhalls table rows
-        while ($row=mysql_fetch_array($partyhalls)){
+        while ($row=mysqli_fetch_array($partyhalls)){
         echo "<option value=$row[partyhall_id]>$row[partyhall_name]"; 
         }
         ?>
@@ -380,7 +380,7 @@ or die("Something is wrong ... \n" . mysql_error());
         <option value="select">- chọn câu hỏi -
         <?php 
         //loop through quantities table rows
-        while ($row=mysql_fetch_array($questions)){
+        while ($row=mysqli_fetch_array($questions)){
         echo "<option value=$row[question_id]>$row[question_text]"; 
         }
         ?>

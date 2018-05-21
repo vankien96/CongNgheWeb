@@ -6,14 +6,14 @@
 require_once('connection/config.php');
 
 //retrive promotions from the specials table
-$result=mysql_query("SELECT * FROM specials")
-or die("There are no records to display ... \n" . mysql_error()); 
+$result=mysqli_query($db,"SELECT * FROM specials")
+or die("There are no records to display ... \n" . mysql_error($db)); 
 ?>
 <?php
     //retrive a currency from the currencies table
     //define a default value for flag_1
     $flag_1 = 1;
-    $currencies=mysql_query("SELECT * FROM currencies WHERE flag='$flag_1'")
+    $currencies=mysqli_query($db,"SELECT * FROM currencies WHERE flag='$flag_1'")
     or die("A problem has occured ... \n" . "Our team is working on it at the moment ... \n" . "Please check back after few hours."); 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -56,7 +56,7 @@ or die("There are no records to display ... \n" . mysql_error());
 </form>
 </table>
 <hr>
-<table width="950" align="center">
+<table width="950" align="center" border="1">
 <CAPTION><h3>DANH SÁCH ƯU ĐÃI</h3></CAPTION>
 <tr>
 <th>Hình ảnh</th>
@@ -70,8 +70,8 @@ or die("There are no records to display ... \n" . mysql_error());
 
 <?php
 //loop through all table rows
-$symbol=mysql_fetch_assoc($currencies); //gets active currency
-while ($row=mysql_fetch_array($result)){
+$symbol=mysqli_fetch_assoc($currencies); //gets active currency
+while ($row=mysqli_fetch_array($result)){
 echo "<tr>";
 echo '<td><img src=../images/'. $row['special_photo']. ' width="80" height="70"></td>';
 echo "<td>" . $row['special_name']."</td>";
@@ -82,8 +82,8 @@ echo "<td>" . $row['special_end_date']."</td>";
 echo '<td><a href="delete-special.php?id=' . $row['special_id'] . '">Xóa ưu đãi</a></td>';
 echo "</tr>";
 }
-mysql_free_result($result);
-mysql_close($link);
+mysqli_free_result($result);
+mysqli_close($db);
 ?>
 </table>
 <hr>

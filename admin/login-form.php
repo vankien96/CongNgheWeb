@@ -17,7 +17,7 @@
   <table width="300" border="0" align="center" cellpadding="2" cellspacing="0">
     <tr>
       <td width="112"><b>Username</b></td>
-      <td width="188"><input name="login" type="text" class="textfield" id="login" /></td>
+      <td width="188"><input name="username" type="text" class="textfield" id="login" /></td>
     </tr>
     <tr>
       <td><b>Password</b></td>

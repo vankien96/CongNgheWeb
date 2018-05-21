@@ -6,8 +6,8 @@
 require_once('connection/config.php');
 
 //selecting all records from the messages table. Return an error if there is a problem
-$result=mysql_query("SELECT * FROM messages")
-or die("There are no records to display ... \n" . mysql_error()); 
+$result=mysqli_query($db,"SELECT * FROM messages")
+or die("There are no records to display ... \n" . mysqli_error($db)); 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -44,7 +44,7 @@ or die("There are no records to display ... \n" . mysql_error());
   </table>
 </form>
 <hr>
-<table border="0" width="1000" align="center">
+<table width="950" align="center" border="1">
 <CAPTION><h3>TIN NHẮN ĐÃ GỬI</h3></CAPTION>
 <tr>
 <th>Mã số</th>
@@ -57,7 +57,7 @@ or die("There are no records to display ... \n" . mysql_error());
 
 <?php
 //loop through all table rows
-while ($row=mysql_fetch_array($result)){
+while ($row=mysqli_fetch_array($result)){
 echo "<tr>";
 echo "<td>" . $row['message_id']."</td>";
 echo "<td>" . $row['message_date']."</td>";
@@ -67,8 +67,8 @@ echo "<td width='300' align='left'>" . $row['message_text']."</td>";
 echo '<td><a href="delete-message.php?id=' . $row['message_id'] . '">Remove Message</a></td>';
 echo "</tr>";
 }
-mysql_free_result($result);
-mysql_close($link);
+mysqli_free_result($result);
+mysqli_close($db);
 ?>
 </table>
 <hr>

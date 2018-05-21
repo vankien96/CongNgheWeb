@@ -7,30 +7,30 @@ require_once('connection/config.php');
 
     
     //selecting all records from the staff table. Return an error if there are no records in the tables
-    $staff=mysql_query("SELECT * FROM staff")
-    or die("There are no records to display ... \n" . mysql_error()); 
+    $staff=mysqli_query($db,"SELECT * FROM staff")
+    or die("There are no records to display ... \n" . mysqli_error($db)); 
 ?>
 <?php
     //get order ids from the orders_details table based on flag=0
     $flag_0 = 0;
-    $orders=mysql_query("SELECT * FROM orders_details WHERE flag='$flag_0'")
-    or die("There are no records to display ... \n" . mysql_error()); 
+    $orders=mysqli_query($db,"SELECT * FROM orders_details WHERE flag='$flag_0'")
+    or die("There are no records to display ... \n" . mysqli_error($db)); 
 ?>
 <?php
     //get reservation ids from the reservations_details table based on flag=0
     $flag_0 = 0;
-    $reservations=mysql_query("SELECT * FROM reservations_details WHERE flag='$flag_0'")
-    or die("There are no records to display ... \n" . mysql_error()); 
+    $reservations=mysqli_query($db,"SELECT * FROM reservations_details WHERE flag='$flag_0'")
+    or die("There are no records to display ... \n" . mysqli_error($db)); 
 ?>
 <?php
     //selecting all records from the staff table. Return an error if there are no records in the tables
-    $staff_1=mysql_query("SELECT * FROM staff")
-    or die("There are no records to display ... \n" . mysql_error());
+    $staff_1=mysqli_query($db,"SELECT * FROM staff")
+    or die("There are no records to display ... \n" . mysqli_error($db));
 ?>
 <?php
     //selecting all records from the staff table. Return an error if there are no records in the tables
-    $staff_2=mysql_query("SELECT * FROM staff")
-    or die("There are no records to display ... \n" . mysql_error());
+    $staff_2=mysqli_query($db,"SELECT * FROM staff")
+    or die("There are no records to display ... \n" . mysqli_error($db));
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -48,18 +48,19 @@ require_once('connection/config.php');
 <a href="profile.php">Thông tin cá nhân</a> | <a href="categories.php">Thể loại</a> | <a href="foods.php">Thức ăn</a> | <a href="accounts.php">Tài khoản</a> | <a href="orders.php">Đơn hàng</a> | <a href="reservations.php">Đặt bàn/hội trường</a> | <a href="specials.php">Ưu đãi</a> | <a href="allocation.php">Nhân viên</a> | <a href="messages.php">Tin nhắn</a> | <a href="options.php">Tùy chỉnh</a> | <a href="logout.php">Đăng xuất</a>
 </div>
 <div id="container">
-<table border="0" width="600" align="center">
+<table border="0" width="600" align="center" border="1">
 <CAPTION><h3>DANH SÁCH NHÂN VIÊN</h3></CAPTION>
 <tr>
 <th>Mã số</th>
 <th>Họ</th>
 <th>Tên</th>
 <th>Địa chỉ</th>
+<th>Action</th>
 </tr>
 
 <?php
 //loop through all table rows
-while ($row=mysql_fetch_array($staff)){
+while ($row=mysqli_fetch_array($staff)){
 echo "<tr>";
 echo "<td>" . $row['StaffID']."</td>";
 echo "<td>" . $row['firstname']."</td>";
@@ -68,8 +69,8 @@ echo "<td>" . $row['Street_Address']."</td>";
 echo '<td><a href="update-staff.php?id=' . $row['StaffID'] . '">Sửa</a> | <a href="delete-staff.php?id=' . $row['StaffID'] . '">Xóa</a></td>';
 echo "</tr>";
 }
-mysql_free_result($staff);
-mysql_close($link);
+mysqli_free_result($staff);
+mysqli_close($db);
 ?>
 </table>
 <hr>
@@ -88,7 +89,7 @@ mysql_close($link);
         <option value="select">- chọn 1 thể loại -
         <?php 
         //loop through orders_details table rows
-        while ($row=mysql_fetch_array($orders)){
+        while ($row=mysqli_fetch_array($orders)){
         echo "<option value=$row[order_id]>$row[order_id]"; 
         }
         ?>
@@ -100,7 +101,7 @@ mysql_close($link);
         <option value="select">- chọn 1 thể loại -
         <?php 
         //loop through staff table rows
-        while ($row=mysql_fetch_array($staff_1)){
+        while ($row=mysqli_fetch_array($staff_1)){
         echo "<option value=$row[StaffID]>$row[StaffID]"; 
         }
         ?>
@@ -126,7 +127,7 @@ mysql_close($link);
         <option value="select">- chọn 1 thể loại -
         <?php 
         //loop through reservations_details table rows
-        while ($row=mysql_fetch_array($reservations)){
+        while ($row=mysqli_fetch_array($reservations)){
         echo "<option value=$row[ReservationID]>$row[ReservationID]"; 
         }
         ?>
@@ -138,7 +139,7 @@ mysql_close($link);
         <option value="select">- chọn 1 thể loại -
         <?php 
         //loop through staff table rows
-        while ($row=mysql_fetch_array($staff_2)){
+        while ($row=mysqli_fetch_array($staff_2)){
         echo "<option value=$row[StaffID]>$row[StaffID]"; 
         }
         ?>

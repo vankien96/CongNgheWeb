@@ -6,19 +6,19 @@
 require_once('connection/config.php');
 
     //retrive promotions from the specials table
-    $result=mysql_query("SELECT * FROM food_details,categories WHERE food_details.food_category=categories.category_id")
-    or die("There are no records to display ... \n" . mysql_error()); 
+    $result=mysqli_query($db,"SELECT * FROM food_details,categories WHERE food_details.food_category=categories.category_id")
+    or die("There are no records to display ... \n" . mysql_error($db)); 
 ?>
 <?php
-    //retrive categories from the categories table
-    $categories=mysql_query("SELECT * FROM categories")
-    or die("There are no records to display ... \n" . mysql_error()); 
+    //retrive categories from the categories tabl
+    $categories=mysqli_query($db,"SELECT * FROM categories")
+    or die("There are no records to display ... \n" . mysql_error($db)); 
 ?>
 <?php
     //retrive a currency from the currencies table
     //define a default value for flag_1
     $flag_1 = 1;
-    $currencies=mysql_query("SELECT * FROM currencies WHERE flag='$flag_1'")
+    $currencies=mysqli_query($db,"SELECT * FROM currencies WHERE flag='$flag_1'")
     or die("A problem has occured ... \n" . "Our team is working on it at the moment ... \n" . "Please check back after few hours."); 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -56,7 +56,7 @@ require_once('connection/config.php');
     <option value="select">- chọn một thể loại -
     <?php 
     //loop through categories table rows
-    while ($row=mysql_fetch_array($categories)){
+    while ($row=mysqli_fetch_array($categories)){
     echo "<option value=$row[category_id]>$row[category_name]"; 
     }
     ?>
@@ -67,7 +67,7 @@ require_once('connection/config.php');
 </form>
 </table>
 <hr>
-<table width="950" align="center">
+<table  align="center" border="1">
 <CAPTION><h3>THỨC ĂN HIỆN CÓ</h3></CAPTION>
 <tr>
 <th>Hình ảnh</th>
@@ -80,8 +80,8 @@ require_once('connection/config.php');
 
 <?php
 //loop through all table rows
-$symbol=mysql_fetch_assoc($currencies); //gets active currency
-while ($row=mysql_fetch_array($result)){
+$symbol=mysqli_fetch_assoc($currencies); //gets active currency
+while ($row=mysqli_fetch_array($result)){
 echo "<tr>";
 echo '<td><img src=../images/'. $row['food_photo']. ' width="80" height="70"></td>';
 echo "<td>" . $row['food_name']."</td>";
@@ -91,8 +91,8 @@ echo "<td>" . $row['category_name']."</td>";
 echo '<td><a href="update-food.php?id=' . $row['food_id'] . '">Sửa</a><br><a href="delete-food.php?id=' . $row['food_id'] . '">Xóa</a></td>';
 echo "</tr>";
 }
-mysql_free_result($result);
-mysql_close($link);
+mysqli_free_result($result);
+mysqli_close($db);
 ?>
 </table>
 <hr>

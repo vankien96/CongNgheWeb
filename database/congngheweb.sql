@@ -1,88 +1,86 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 12, 2016 at 07:39 AM
--- Server version: 5.6.16
--- PHP Version: 5.5.11
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th5 21, 2018 lúc 06:25 AM
+-- Phiên bản máy phục vụ: 10.1.26-MariaDB
+-- Phiên bản PHP: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `congngheweb`
+-- Cơ sở dữ liệu: `congngheweb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `billing_details`
+-- Cấu trúc bảng cho bảng `billing_details`
 --
 
-CREATE TABLE IF NOT EXISTS `billing_details` (
-  `billing_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `billing_details` (
+  `billing_id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
-  `Street_Address` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `P_O_Box_No` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  `City` text COLLATE utf8_unicode_ci NOT NULL,
-  `Mobile_No` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  `Landline_No` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`billing_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+  `address` text COLLATE utf8_unicode_ci NOT NULL,
+  `city` text COLLATE utf8_unicode_ci NOT NULL,
+  `phone` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `billing_details`
+-- Đang đổ dữ liệu cho bảng `billing_details`
 --
 
-INSERT INTO `billing_details` (`billing_id`, `member_id`, `Street_Address`, `P_O_Box_No`, `City`, `Mobile_No`, `Landline_No`) VALUES
-(1, 3, '647 Nguyễn Lương Bằng', '1254', 'Không có', '123456', '123456');
+INSERT INTO `billing_details` (`billing_id`, `member_id`, `address`, `city`, `phone`) VALUES
+(2, 12, 'Tôn đức thắng', 'Đà Nẵng', '0121356986');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart_details`
+-- Cấu trúc bảng cho bảng `cart_details`
 --
 
-CREATE TABLE IF NOT EXISTS `cart_details` (
-  `cart_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cart_details` (
+  `cart_id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
   `food_id` int(11) NOT NULL,
-  `quantity_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
   `total` float NOT NULL,
-  `flag` int(1) NOT NULL,
-  PRIMARY KEY (`cart_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+  `flag` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `cart_details`
+-- Đang đổ dữ liệu cho bảng `cart_details`
 --
 
-INSERT INTO `cart_details` (`cart_id`, `member_id`, `food_id`, `quantity_id`, `total`, `flag`) VALUES
+INSERT INTO `cart_details` (`cart_id`, `member_id`, `food_id`, `quantity`, `total`, `flag`) VALUES
 (1, 3, 15, 1, 350000, 1),
 (2, 3, 13, 1, 300000, 1),
-(3, 3, 1, 1, 150000, 1);
+(3, 3, 1, 1, 150000, 1),
+(15, 12, 1, 1, 150000, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Cấu trúc bảng cho bảng `categories`
 --
 
-CREATE TABLE IF NOT EXISTS `categories` (
-  `category_id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+CREATE TABLE `categories` (
+  `category_id` int(11) NOT NULL,
+  `category_name` varchar(45) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `categories`
+-- Đang đổ dữ liệu cho bảng `categories`
 --
 
 INSERT INTO `categories` (`category_id`, `category_name`) VALUES
@@ -94,18 +92,17 @@ INSERT INTO `categories` (`category_id`, `category_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `currencies`
+-- Cấu trúc bảng cho bảng `currencies`
 --
 
-CREATE TABLE IF NOT EXISTS `currencies` (
-  `currency_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `currencies` (
+  `currency_id` int(11) NOT NULL,
   `currency_symbol` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  `flag` int(1) NOT NULL,
-  PRIMARY KEY (`currency_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+  `flag` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `currencies`
+-- Đang đổ dữ liệu cho bảng `currencies`
 --
 
 INSERT INTO `currencies` (`currency_id`, `currency_symbol`, `flag`) VALUES
@@ -114,21 +111,20 @@ INSERT INTO `currencies` (`currency_id`, `currency_symbol`, `flag`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `food_details`
+-- Cấu trúc bảng cho bảng `food_details`
 --
 
-CREATE TABLE IF NOT EXISTS `food_details` (
-  `food_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `food_details` (
+  `food_id` int(11) NOT NULL,
   `food_name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `food_description` text COLLATE utf8_unicode_ci NOT NULL,
   `food_price` float NOT NULL,
   `food_photo` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `food_category` int(11) NOT NULL,
-  PRIMARY KEY (`food_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
+  `food_category` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `food_details`
+-- Đang đổ dữ liệu cho bảng `food_details`
 --
 
 INSERT INTO `food_details` (`food_id`, `food_name`, `food_description`, `food_price`, `food_photo`, `food_category`) VALUES
@@ -154,93 +150,98 @@ INSERT INTO `food_details` (`food_id`, `food_name`, `food_description`, `food_pr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `members`
+-- Cấu trúc bảng cho bảng `members`
 --
 
-CREATE TABLE IF NOT EXISTS `members` (
-  `member_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `members` (
+  `member_id` int(11) NOT NULL,
   `firstname` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `lastname` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `login` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `passwd` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `question_id` int(5) NOT NULL,
-  `answer` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`member_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+  `answer` varchar(45) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `members`
+-- Đang đổ dữ liệu cho bảng `members`
 --
 
-INSERT INTO `members` (`member_id`, `firstname`, `lastname`, `login`, `passwd`, `question_id`, `answer`) VALUES
-(2, 'Đỗ Cường', 'Đạt', 'cuongdat@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, '7e16036a55664f22e6511e460ee09d4f'),
-(3, 'Nguyễn Hoàng', 'Quân', 'hoangquan@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, '7e16036a55664f22e6511e460ee09d4f'),
-(4, 'Nguyễn Nhữ', 'Hoàng', 'nhuhoang@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 2, '17ef6ccd6d3c5f5d576d99e606c0950e');
+INSERT INTO `members` (`member_id`, `firstname`, `lastname`, `email`, `password`, `question_id`, `answer`) VALUES
+(3, 'Trần Đức', 'Long', 'longmup@gmail.com', 'c4ca4238a0b923820dcc509a6f75849b', 1, 'bfdb6633ad86a2ba23e1a2b436a844b1'),
+(4, 'Trương Văn', 'Kiên', 'vankien@gmail.com', 'c4ca4238a0b923820dcc509a6f75849b', 2, 'bfdb6633ad86a2ba23e1a2b436a844b1'),
+(12, 'Lưu Ngọc', 'Lan', 'lan@gmail.com', 'c4ca4238a0b923820dcc509a6f75849b', 2, 'bda9643ac6601722a28f238714274da4');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
+-- Cấu trúc bảng cho bảng `messages`
 --
 
-CREATE TABLE IF NOT EXISTS `messages` (
-  `message_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `messages` (
+  `message_id` int(11) NOT NULL,
   `message_from` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `message_date` date NOT NULL,
   `message_time` time NOT NULL,
   `message_subject` text COLLATE utf8_unicode_ci NOT NULL,
-  `message_text` text COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`message_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+  `message_text` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `messages`
+-- Đang đổ dữ liệu cho bảng `messages`
 --
 
 INSERT INTO `messages` (`message_id`, `message_from`, `message_date`, `message_time`, `message_subject`, `message_text`) VALUES
-(1, 'administrator', '2016-05-10', '20:07:57', 'Xin chào thành viên mới', 'Xin chào quý khách đã đên với hệ thống website của nhà hàng Food Plaza. Chúc quý khách có những bữa ăn ngon miệng!');
+(1, 'administrator', '2018-05-10', '20:07:57', 'Xin chào thành viên mới', 'Xin chào quý khách đã đên với hệ thống website của nhà hàng Food Plaza. Chúc quý khách có những bữa ăn ngon miệng!');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders_details`
+-- Cấu trúc bảng cho bảng `orders_details`
 --
 
-CREATE TABLE IF NOT EXISTS `orders_details` (
-  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `orders_details` (
+  `order_id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
   `billing_id` int(11) NOT NULL,
   `cart_id` int(11) NOT NULL,
   `delivery_date` date NOT NULL,
   `StaffID` int(11) NOT NULL,
   `flag` int(1) NOT NULL,
-  `time_stamp` time NOT NULL,
-  PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+  `time_stamp` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `orders_details`
+-- Đang đổ dữ liệu cho bảng `orders_details`
 --
 
 INSERT INTO `orders_details` (`order_id`, `member_id`, `billing_id`, `cart_id`, `delivery_date`, `StaffID`, `flag`, `time_stamp`) VALUES
 (1, 3, 1, 1, '2016-05-10', 1, 1, '21:01:01'),
 (2, 3, 1, 2, '2016-05-10', 1, 1, '21:01:16'),
-(3, 3, 1, 3, '2016-05-10', 0, 0, '21:17:04');
+(3, 3, 1, 3, '2016-05-10', 0, 0, '21:17:04'),
+(4, 12, 2, 0, '2018-05-21', 0, 0, '05:51:01'),
+(5, 12, 2, 0, '2018-05-21', 0, 0, '05:51:05'),
+(6, 12, 2, 0, '2018-05-21', 0, 0, '10:53:49'),
+(7, 12, 2, 0, '2018-05-21', 0, 0, '10:53:56'),
+(11, 12, 2, 12, '2018-05-21', 0, 0, '10:57:10'),
+(12, 12, 2, 11, '2018-05-21', 0, 0, '11:08:04'),
+(13, 12, 2, 11, '2018-05-21', 0, 0, '11:08:51'),
+(14, 12, 2, 11, '2018-05-21', 0, 0, '11:17:51'),
+(15, 12, 2, 15, '2018-05-21', 0, 0, '11:23:18');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `partyhalls`
+-- Cấu trúc bảng cho bảng `partyhalls`
 --
 
-CREATE TABLE IF NOT EXISTS `partyhalls` (
-  `partyhall_id` int(11) NOT NULL AUTO_INCREMENT,
-  `partyhall_name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`partyhall_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
+CREATE TABLE `partyhalls` (
+  `partyhall_id` int(11) NOT NULL,
+  `partyhall_name` varchar(45) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `partyhalls`
+-- Đang đổ dữ liệu cho bảng `partyhalls`
 --
 
 INSERT INTO `partyhalls` (`partyhall_id`, `partyhall_name`) VALUES
@@ -257,79 +258,37 @@ INSERT INTO `partyhalls` (`partyhall_id`, `partyhall_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pizza_admin`
+-- Cấu trúc bảng cho bảng `polls_details`
 --
 
-CREATE TABLE IF NOT EXISTS `pizza_admin` (
-  `Admin_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Username` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `Password` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`Admin_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `pizza_admin`
---
-
-INSERT INTO `pizza_admin` (`Admin_ID`, `Username`, `Password`) VALUES
-(1, 'admin', 'admin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `polls_details`
---
-
-CREATE TABLE IF NOT EXISTS `polls_details` (
-  `poll_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `polls_details` (
+  `poll_id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
   `food_id` int(11) NOT NULL,
-  `rate_id` int(11) NOT NULL,
-  PRIMARY KEY (`poll_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `rate_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `polls_details`
+--
+
+INSERT INTO `polls_details` (`poll_id`, `member_id`, `food_id`, `rate_id`) VALUES
+(7, 12, 17, 2),
+(8, 12, 16, 5);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quantities`
+-- Cấu trúc bảng cho bảng `questions`
 --
 
-CREATE TABLE IF NOT EXISTS `quantities` (
-  `quantity_id` int(11) NOT NULL AUTO_INCREMENT,
-  `quantity_value` int(5) NOT NULL,
-  PRIMARY KEY (`quantity_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
+CREATE TABLE `questions` (
+  `question_id` int(11) NOT NULL,
+  `question_text` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `quantities`
---
-
-INSERT INTO `quantities` (`quantity_id`, `quantity_value`) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5),
-(6, 6),
-(7, 7),
-(8, 8),
-(9, 9),
-(10, 10);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `questions`
---
-
-CREATE TABLE IF NOT EXISTS `questions` (
-  `question_id` int(11) NOT NULL AUTO_INCREMENT,
-  `question_text` text COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`question_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `questions`
+-- Đang đổ dữ liệu cho bảng `questions`
 --
 
 INSERT INTO `questions` (`question_id`, `question_text`) VALUES
@@ -341,17 +300,16 @@ INSERT INTO `questions` (`question_id`, `question_text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ratings`
+-- Cấu trúc bảng cho bảng `ratings`
 --
 
-CREATE TABLE IF NOT EXISTS `ratings` (
-  `rate_id` int(11) NOT NULL AUTO_INCREMENT,
-  `rate_name` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`rate_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+CREATE TABLE `ratings` (
+  `rate_id` int(11) NOT NULL,
+  `rate_name` varchar(15) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `ratings`
+-- Đang đổ dữ liệu cho bảng `ratings`
 --
 
 INSERT INTO `ratings` (`rate_id`, `rate_name`) VALUES
@@ -364,11 +322,11 @@ INSERT INTO `ratings` (`rate_id`, `rate_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservations_details`
+-- Cấu trúc bảng cho bảng `reservations_details`
 --
 
-CREATE TABLE IF NOT EXISTS `reservations_details` (
-  `ReservationID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `reservations_details` (
+  `ReservationID` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
   `table_id` int(11) NOT NULL,
   `partyhall_id` int(11) NOT NULL,
@@ -377,12 +335,11 @@ CREATE TABLE IF NOT EXISTS `reservations_details` (
   `StaffID` int(11) NOT NULL,
   `flag` int(1) NOT NULL,
   `table_flag` int(1) NOT NULL,
-  `partyhall_flag` int(1) NOT NULL,
-  PRIMARY KEY (`ReservationID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+  `partyhall_flag` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `reservations_details`
+-- Đang đổ dữ liệu cho bảng `reservations_details`
 --
 
 INSERT INTO `reservations_details` (`ReservationID`, `member_id`, `table_id`, `partyhall_id`, `Reserve_Date`, `Reserve_Time`, `StaffID`, `flag`, `table_flag`, `partyhall_flag`) VALUES
@@ -391,22 +348,21 @@ INSERT INTO `reservations_details` (`ReservationID`, `member_id`, `table_id`, `p
 -- --------------------------------------------------------
 
 --
--- Table structure for table `specials`
+-- Cấu trúc bảng cho bảng `specials`
 --
 
-CREATE TABLE IF NOT EXISTS `specials` (
-  `special_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `specials` (
+  `special_id` int(11) NOT NULL,
   `special_name` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `special_description` text COLLATE utf8_unicode_ci NOT NULL,
   `special_price` float NOT NULL,
   `special_start_date` date NOT NULL,
   `special_end_date` date NOT NULL,
-  `special_photo` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`special_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+  `special_photo` varchar(45) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `specials`
+-- Đang đổ dữ liệu cho bảng `specials`
 --
 
 INSERT INTO `specials` (`special_id`, `special_name`, `special_description`, `special_price`, `special_start_date`, `special_end_date`, `special_photo`) VALUES
@@ -416,40 +372,38 @@ INSERT INTO `specials` (`special_id`, `special_name`, `special_description`, `sp
 -- --------------------------------------------------------
 
 --
--- Table structure for table `staff`
+-- Cấu trúc bảng cho bảng `staff`
 --
 
-CREATE TABLE IF NOT EXISTS `staff` (
-  `StaffID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `staff` (
+  `StaffID` int(11) NOT NULL,
   `firstname` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `lastname` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `Street_Address` text COLLATE utf8_unicode_ci NOT NULL,
-  `Mobile_Tel` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`StaffID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+  `Mobile_Tel` varchar(15) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `staff`
+-- Đang đổ dữ liệu cho bảng `staff`
 --
 
 INSERT INTO `staff` (`StaffID`, `firstname`, `lastname`, `Street_Address`, `Mobile_Tel`) VALUES
-(1, 'Nguyễn Nhật', 'Anh', 'Quảng Ngãi', '123458785'),
-(2, 'Hoàng Huy', 'Hùng', 'Quảng Nam', '454697466');
+(1, 'Đoàn', 'Dự', 'Võ Đang', '123458785'),
+(2, 'Chu Bá', 'Thông', 'Hoa Sơn', '454697466');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tables`
+-- Cấu trúc bảng cho bảng `tables`
 --
 
-CREATE TABLE IF NOT EXISTS `tables` (
-  `table_id` int(11) NOT NULL AUTO_INCREMENT,
-  `table_name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`table_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=22 ;
+CREATE TABLE `tables` (
+  `table_id` int(11) NOT NULL,
+  `table_name` varchar(45) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `tables`
+-- Đang đổ dữ liệu cho bảng `tables`
 --
 
 INSERT INTO `tables` (`table_id`, `table_name`) VALUES
@@ -478,38 +432,235 @@ INSERT INTO `tables` (`table_id`, `table_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `timezones`
+-- Cấu trúc bảng cho bảng `users`
 --
 
-CREATE TABLE IF NOT EXISTS `timezones` (
-  `timezone_id` int(11) NOT NULL AUTO_INCREMENT,
-  `timezone_reference` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `flag` int(1) NOT NULL,
-  PRIMARY KEY (`timezone_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `timezones`
---
-
-INSERT INTO `timezones` (`timezone_id`, `timezone_reference`, `flag`) VALUES
-(1, 'GMT +7', 1),
-(2, 'GMT +8', 0),
-(3, 'GMT +6', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `username` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `email`) VALUES
+(1, 'admin', 'admin', 'admin@gmail.com');
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `billing_details`
+--
+ALTER TABLE `billing_details`
+  ADD PRIMARY KEY (`billing_id`);
+
+--
+-- Chỉ mục cho bảng `cart_details`
+--
+ALTER TABLE `cart_details`
+  ADD PRIMARY KEY (`cart_id`);
+
+--
+-- Chỉ mục cho bảng `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Chỉ mục cho bảng `currencies`
+--
+ALTER TABLE `currencies`
+  ADD PRIMARY KEY (`currency_id`);
+
+--
+-- Chỉ mục cho bảng `food_details`
+--
+ALTER TABLE `food_details`
+  ADD PRIMARY KEY (`food_id`);
+
+--
+-- Chỉ mục cho bảng `members`
+--
+ALTER TABLE `members`
+  ADD PRIMARY KEY (`member_id`);
+
+--
+-- Chỉ mục cho bảng `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`message_id`);
+
+--
+-- Chỉ mục cho bảng `orders_details`
+--
+ALTER TABLE `orders_details`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Chỉ mục cho bảng `partyhalls`
+--
+ALTER TABLE `partyhalls`
+  ADD PRIMARY KEY (`partyhall_id`);
+
+--
+-- Chỉ mục cho bảng `polls_details`
+--
+ALTER TABLE `polls_details`
+  ADD PRIMARY KEY (`poll_id`);
+
+--
+-- Chỉ mục cho bảng `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`question_id`);
+
+--
+-- Chỉ mục cho bảng `ratings`
+--
+ALTER TABLE `ratings`
+  ADD PRIMARY KEY (`rate_id`);
+
+--
+-- Chỉ mục cho bảng `reservations_details`
+--
+ALTER TABLE `reservations_details`
+  ADD PRIMARY KEY (`ReservationID`);
+
+--
+-- Chỉ mục cho bảng `specials`
+--
+ALTER TABLE `specials`
+  ADD PRIMARY KEY (`special_id`);
+
+--
+-- Chỉ mục cho bảng `staff`
+--
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`StaffID`);
+
+--
+-- Chỉ mục cho bảng `tables`
+--
+ALTER TABLE `tables`
+  ADD PRIMARY KEY (`table_id`);
+
+--
+-- Chỉ mục cho bảng `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `billing_details`
+--
+ALTER TABLE `billing_details`
+  MODIFY `billing_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `cart_details`
+--
+ALTER TABLE `cart_details`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT cho bảng `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT cho bảng `currencies`
+--
+ALTER TABLE `currencies`
+  MODIFY `currency_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `food_details`
+--
+ALTER TABLE `food_details`
+  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT cho bảng `members`
+--
+ALTER TABLE `members`
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT cho bảng `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `orders_details`
+--
+ALTER TABLE `orders_details`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT cho bảng `partyhalls`
+--
+ALTER TABLE `partyhalls`
+  MODIFY `partyhall_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT cho bảng `polls_details`
+--
+ALTER TABLE `polls_details`
+  MODIFY `poll_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `ratings`
+--
+ALTER TABLE `ratings`
+  MODIFY `rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT cho bảng `reservations_details`
+--
+ALTER TABLE `reservations_details`
+  MODIFY `ReservationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `specials`
+--
+ALTER TABLE `specials`
+  MODIFY `special_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `staff`
+--
+ALTER TABLE `staff`
+  MODIFY `StaffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `tables`
+--
+ALTER TABLE `tables`
+  MODIFY `table_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT cho bảng `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -3,8 +3,8 @@
 	session_start();
 	
 	//Include database connection details
-	require_once('connection/config.php');
-	
+	// require_once('connection/config.php');
+	include 'connection/config.php';
 	//Array to store validation errors
 	$errmsg_arr = array();
 	
@@ -23,48 +23,46 @@
 	}
 	
 	//Sanitize the POST values
-	$login = clean($_POST['login']);
-	$password = clean($_POST['password']);
-	
+	// $login = clean($_POST['login']);
+	// $password = clean($_POST['password']);
+
+	$login = $_POST['username'];
+	$password = $_POST['password'];
 	//Input Validations
-	if($login == '') {
-		$errmsg_arr[] = 'Username missing';
-		$errflag = true;
-	}
-	if($password == '') {
-		$errmsg_arr[] = 'Password missing';
-		$errflag = true;
-	}
+	// if($login == '') {
+	// 	$errmsg_arr[] = 'Username missing';
+	// 	$errflag = true;
+	// }
+	// if($password == '') {
+	// 	$errmsg_arr[] = 'Password missing';
+	// 	$errflag = true;
+	// }
 	
-	//If there are input validations, redirect back to the login form
-	if($errflag) {
-		$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
-		session_write_close();
-		header("location: login-form.php");
-		exit();
-	}
+	// //If there are input validations, redirect back to the login form
+	// if($errflag) {
+	// 	$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
+	// 	session_write_close();
+	// 	header("location: login-form.php");
+	// 	exit();
+	// }
 	
 	//Create query
-	$qry="SELECT * FROM pizza_admin WHERE Username='$login' AND Password='$password'";
-	$result=mysqli_query($db, $qry);
-	
+	$qry="SELECT * FROM users WHERE username='$login' AND password='$password'";
+	 $result = mysqli_query($db,$qry);
+	 echo $username;
 	//Check whether the query was successful or not
-	if($result) {
-		if(mysqli_num_rows($result) == 1) {
+	if (mysqli_num_rows($result) > 0)  {
 			//Login Successful
 			session_regenerate_id();
 			$member = mysqli_fetch_assoc($result);
-			$_SESSION['SESS_ADMIN_ID'] = $member['Admin_ID'];
-			$_SESSION['SESS_ADMIN_NAME'] = $member['Username'];
+			$_SESSION['SESS_ADMIN_ID'] = $member['id'];
+			$_SESSION['SESS_ADMIN_NAME'] = $member['username'];
 			session_write_close();
 			header("location: index.php");
-			exit();
-		}else {
+	}
+	else {
 			//Login failed
 			header("location: login-failed.php");
-			exit();
-		}
-	}else {
-		die("Query failed");
 	}
+	
 ?>
