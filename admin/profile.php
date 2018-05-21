@@ -19,7 +19,7 @@
 <div id="container">
 <table align="center">
 <tr>
-<form id="updateForm" name="updateForm" method="post" action="update-exec.php?id=<?php echo $_SESSION['SESS_ADMIN_ID'];?>" onsubmit="return updateValidate(this)">
+<form id="updateForm" name="updateForm" method="post" action="update-password-exec.php" onsubmit="return updateValidate(this)">
 <td>
   <table width="350" border="0" cellpadding="2" cellspacing="0">
   <CAPTION><h3>THAY ĐỔI MẬT KHẨU ADMIN</h3></CAPTION>
