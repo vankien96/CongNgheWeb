@@ -45,16 +45,8 @@ or die("Something is wrong ... \n" .mysqli_error($db));
 ?>
 <?php
     if(isset($_POST['Submit'])){
-        //Function to sanitize values received from the form. Prevents SQL injection
-        function clean($str) {
-            $str = @trim($str);
-            if(get_magic_quotes_gpc()) {
-                $str = stripslashes($str);
-            }
-            return mysqli_real_escape_string($str);
-        }
         //get category id
-        $id = clean($_POST['food']);
+        $id = $_POST['food'];
         
         //get ratings ids
         $ratings=mysqli_query($db,"SELECT * FROM ratings")
@@ -169,9 +161,9 @@ or die("Something is wrong ... \n" .mysqli_error($db));
             <option value="select">- chọn thức ăn -
             <?php 
             //loop through food_details table rows
-            while ($row=mysqli_fetch_array($foods)){
-            echo "<option value=$row[food_id]>$row[food_name]"; 
-            }
+                while ($row=mysqli_fetch_array($foods)){
+                    echo "<option value=$row[food_id]>$row[food_name]"; 
+                }
             ?>
             </select></td>
             <td><input type="submit" name="Submit" value="Hiển thị" /></td>
@@ -198,14 +190,13 @@ or die("Something is wrong ... \n" .mysqli_error($db));
         $worse_value=mysqli_num_rows($worse_qry);
         //percentile rates
         $total_value=mysqli_num_rows($qry);
-        if($total_value != 0){
+        if($total_value != 0) {
             $excellent_rate=$excellent_value/$total_value*100;
             $good_rate=$good_value/$total_value*100;
             $average_rate=$average_value/$total_value*100;
             $bad_rate=$bad_value/$total_value*100;
             $worse_rate=$worse_value/$total_value*100;
-        }
-        else{
+        } else {
             $excellent_rate=0;
             $good_rate=0;
             $average_rate=0;
@@ -214,7 +205,7 @@ or die("Something is wrong ... \n" .mysqli_error($db));
         }
         //get food name
         if(mysqli_num_rows($qry)>0){
-            $row=mysql_fetch_array($qry);
+            $row=mysqli_fetch_array($qry);
             $food_name=$row['food_name'];
         }
         else{
