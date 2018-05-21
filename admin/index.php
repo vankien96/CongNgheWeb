@@ -116,10 +116,10 @@ or die("Something is wrong ... \n" .mysqli_error($db));
 <div id="page">
 <div id="header">
 <h1>Administrator Control Panel</h1>
-<a href="profile.php">Thông tin cá nhân</a> | <a href="categories.php">Thể loại</a> | <a href="foods.php">Thức ăn</a> | <a href="accounts.php">Tài khoản</a> | <a href="orders.php">Đơn hàng</a> | <a href="reservations.php">Đặt bàn/hội trường</a> | <a href="specials.php">Ưu đãi</a> | <a href="allocation.php">Nhân viên</a> | <a href="messages.php">Tin nhắn</a> | <a href="options.php">Tùy chỉnh</a> | <a href="logout.php">Đăng xuất</a>
+<a href="profile.php">Thông tin cá nhân</a> | <a href="categories.php">Thể loại</a> | <a href="foods.php">Thức ăn</a> | <a href="accounts.php">Tài khoản</a> | <a href="orders.php">Đơn hàng</a> | <a href="reservations.php">Đặt bàn/hội trường</a> | <a href="specials.php">Ưu đãi</a> | <a href="messages.php">Tin nhắn</a> | <a href="logout.php">Đăng xuất</a>
 </div>
 <div id="container">
-<table width="1000" align="center" style="text-align:center" border="1">
+<table width="950" align="center" style="text-align:center" border="1">
 <CAPTION><h3>TRẠNG THÁI HIỆN TẠI</h3></CAPTION>
 <tr>
     <th>Thành viên</th>

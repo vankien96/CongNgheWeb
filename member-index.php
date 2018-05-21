@@ -9,7 +9,7 @@ require_once('connection/config.php');
 $memberId=$_SESSION['SESS_MEMBER_ID'];
 
 //selecting all records from the orders_details table. Return an error if there are no records in the table
-$result=mysqli_query($db, "SELECT * FROM orders_details,cart_details,food_details,categories,members WHERE members.member_id='$memberId' AND orders_details.member_id='$memberId' AND orders_details.cart_id=cart_details.cart_id AND cart_details.food_id=food_details.food_id AND food_details.food_category=categories.category_id")
+$result=mysqli_query($db, "SELECT * FROM orders_details,cart_details,food_details,categories,members WHERE members.member_id='$memberId' AND orders_details.member_id='$memberId' AND orders_details.cart_id=cart_details.cart_id AND cart_details.food_id=food_details.food_id AND food_details.food_category=categories.category_id AND orders_details.flag = '1'")
   or die("There are no records to display ... \n" . mysqli_error()); 
 ?>
 <?php

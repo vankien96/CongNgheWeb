@@ -14,7 +14,7 @@
 <div id="page">
 <div id="header">
 <h1>Profile </h1>
-<a href="profile.php">Thông tin cá nhân</a> | <a href="categories.php">Thể loại</a> | <a href="foods.php">Thức ăn</a> | <a href="accounts.php">Tài khoản</a> | <a href="orders.php">Đơn hàng</a> | <a href="reservations.php">Đặt bàn/hội trường</a> | <a href="specials.php">Ưu đãi</a> | <a href="allocation.php">Nhân viên</a> | <a href="messages.php">Tin nhắn</a> | <a href="options.php">Tùy chỉnh</a> | <a href="logout.php">Đăng xuất</a>
+<a href="profile.php">Thông tin cá nhân</a> | <a href="categories.php">Thể loại</a> | <a href="foods.php">Thức ăn</a> | <a href="accounts.php">Tài khoản</a> | <a href="orders.php">Đơn hàng</a> | <a href="reservations.php">Đặt bàn/hội trường</a> | <a href="specials.php">Ưu đãi</a> | <a href="messages.php">Tin nhắn</a> | <a href="logout.php">Đăng xuất</a>
 </div>
 <div id="container">
 <table align="center">
@@ -45,40 +45,9 @@
   </table>
 </td>
 </form>
-<td>
-<form id="staffForm" name="staffForm" method="post" action="staff-exec.php" onsubmit="return staffValidate(this)">
-  <table width="300" border="0" align="center" cellpadding="2" cellspacing="0">
-  <CAPTION><h3>THÊM NHÂN VIÊN MỚI</h3></CAPTION>
-	<tr>
-		<td colspan="2" style="text-align:center;"><font color="#FF0000">* </font>Miền bắt buộc</td>
-	</tr>
-    <tr>
-      <th>Họ </th>
-      <td><font color="#FF0000">* </font><input name="fName" type="text" class="textfield" id="fName" /></td>
-    </tr>
-	<tr>
-      <th>Tên </th>
-      <td><font color="#FF0000">* </font><input name="lName" type="text" class="textfield" id="lName" /></td>
-    </tr>
-	 <tr>
-      <th>Địa chỉ </th>
-      <td><font color="#FF0000">* </font><input name="sAddress" type="text" class="textfield" id="sAddress" /></td>
-    </tr>
-    <tr>
-      <th>Điện thoại </th>
-      <td><font color="#FF0000">* </font><input name="mobile" type="text" class="textfield" id="mobile" /></td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td><input type="submit" name="Submit" value="Thêm" /></td>
-    </tr>
-  </table>
-</td>
-</form>
 </tr>
 </table>
 <p>&nbsp;</p>
-<hr>
 </div>
 <div id="footer">
 <div class="bottom_addr"><a href="index.php" title="">VỀ TRANG CHỦ</a></div>
