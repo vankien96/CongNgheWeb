@@ -18,16 +18,7 @@ or die("A problem has occured ... \n" . "Our team is working on it at the moment
 ?>
 <?php
     if(isset($_POST['Submit'])){
-        //Function to sanitize values received from the form. Prevents SQL injection
-        function clean($str) {
-            $str = @trim($str);
-            if(get_magic_quotes_gpc()) {
-                $str = stripslashes($str);
-            }
-            return mysqli_real_escape_string($str);
-        }
-        //get category id
-        $id = clean($_POST['category']);
+        $id = $_POST['category'];
         
         //selecting all records from the food_details table based on category id. Return an error if there are no records in the table
         $result=mysqli_query($db,"SELECT * FROM food_details WHERE food_category='$id'")
@@ -55,6 +46,50 @@ or die("A problem has occured ... \n" . "Our team is working on it at the moment
   <script language="JavaScript" src="validation/user.js"></script>
   <script src="js/jquery-1.11.2.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    function orderExcute(clicked_id) {
+      $.ajax({
+            url: "order-exec.php",
+            method: "POST",
+            data: {
+              cart_id: clicked_id
+            },
+            success: function(response) {
+              var dataRes = JSON.parse(response);
+              if (dataRes.status) {
+                alert(dataRes.message);
+                window.open("member-index.php","_self",false);
+              } else {
+                if (dataRes.billing) {
+                  alert("Bạn chưa có thông tin giao hàng. Vui lòng cập nhật trong profile");
+                  window.open("member-profile.php","_self",false);
+                } else {
+                  alert(dataRes.message);
+                }
+              }
+            }
+          })
+    }
+
+    function deleteOrder(clicked_id) {
+      $.ajax({
+            url: "delete-order.php",
+            method: "POST",
+            data: {
+              cart_id: clicked_id
+            },
+            success: function(response) {
+              var dataRes = JSON.parse(response);
+              if (dataRes.status) {
+                alert("Hủy đặt hàng thành công.");
+                location.reload();
+              } else {
+                alert(dataRes.message);
+              }
+            }
+          })
+    }
+  </script>
 </head>
 <body>
 <div id="page">
@@ -137,11 +172,11 @@ or die("A problem has occured ... \n" . "Our team is working on it at the moment
                     echo "<td>" . $row['food_name']."</td>";
                     echo "<td>" . $row['food_description']."</td>";
                     echo "<td>" . $row['category_name']."</td>";
-                    echo "<td>" . $symbol['currency_symbol']. "" . $row['food_price']."</td>";
+                    echo "<td>" . $row['food_price']."" . $symbol['currency_symbol']. "</td>";
                     echo "<td>" . $row['quantity']."</td>";
                     echo "<td>" . $row['total']."" . $symbol['currency_symbol']. "</td>";
-                echo '<td><a href="order-exec.php?id=' . $row['cart_id'] . '">Thanh toán</a></td>';
-                echo "</tr>";
+                    echo "<td><button id = ".$row["cart_id"]." onclick='orderExcute(this.id)' class='btn btn-primary'>Thanh Toán</button><button id = ".$row["cart_id"]." onclick='deleteOrder(this.id)' class='btn btn-danger'>Hủy</button></td>";
+                    echo "</tr>";
                 }
                 mysqli_free_result($result);
                 mysqli_close($db);

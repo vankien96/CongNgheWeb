@@ -110,9 +110,9 @@ require_once('connection/config.php');
             <option value="select">- chọn hội trường -
             <?php 
             //loop through partyhalls table rows
-            while ($row=mysqli_fetch_array($partyhalls)){
-            echo "<option value=$row[partyhall_id]>$row[partyhall_name]"; 
-            }
+              while ($row=mysqli_fetch_array($partyhalls)){
+                echo "<option value=$row[partyhall_id]>$row[partyhall_name]"; 
+              }
             ?>
             </select>
             </td>

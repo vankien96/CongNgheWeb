@@ -117,7 +117,6 @@ $result=mysqli_query($db, "SELECT * FROM orders_details,cart_details,food_detail
     <th>Số lượng</th>
     <th>Tổng cộng</th>
     <th>Ngày giao hàng</th>
-    <th>Action</th>
   </tr>
 
 <?php
@@ -133,7 +132,6 @@ $result=mysqli_query($db, "SELECT * FROM orders_details,cart_details,food_detail
     echo "<td>" . $row['quantity']."</td>";
     echo "<td>" . $row['total']."" . $symbol['currency_symbol']. "</td>";
     echo "<td>" . $row['delivery_date']."</td>";
-    echo '<td><a href="delete-order.php?id=' . $row['order_id'] . '">Hủy</a></td>';
     echo "</tr>";
   }
 ?>
