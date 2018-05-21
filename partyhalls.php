@@ -38,7 +38,35 @@ require_once('connection/config.php');
   <script language="JavaScript" src="validation/user.js"></script>
   <script src="js/jquery-1.11.2.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-</script>
+  <script type="text/javascript">
+    function makeHall() {
+      if ($('#partyhallForm')[0].checkValidity()) {
+        var hallId = document.getElementById("partyhall").value;
+        var date = document.getElementById("date").value;
+        var time = document.getElementById("time").value;
+        $.ajax({
+            url: "reserve-exec.php",
+            method: "POST",
+            data: {
+              partyhall: hallId,
+              date: date,
+              time: time
+            },
+            success: function(response) {
+              var dataRes = JSON.parse(response);
+              if (dataRes.status) {
+                alert("Đặt hội trường thành công");
+                window.open("index.php","_self",false);
+              } else {
+                alert(dataRes.message);
+              }
+            }
+          })
+      } else {
+        alert("Vui lòng nhập toàn bộ các trường");
+      }
+    }
+  </script>
 </head>
 <body>
 <div id="page">
@@ -100,13 +128,13 @@ require_once('connection/config.php');
 <p>&nbsp;</p>
 <p>Đây là nơi bạn có thể đặt hội trường cho các bữa tiệc lớn của mình... Để biêt thêm thông tin <a href="contactus.php">Nhấn vào đây</a> để liên lạc với chúng tôi.
 <hr>
-<form name="partyhallForm" id="partyhallForm" method="post" action="reserve-exec.php?id=<?php echo $_SESSION['SESS_MEMBER_ID'];?>" onsubmit="return partyhallValidate(this)">
+<form id="partyhallForm">
     <table align="center" width="320">
         <CAPTION><h3>ĐẶT CHỔ HỘI TRƯỜNG</h3></CAPTION>
         <tr>
             <td><b>Hội trường số/tên:</b></td>
             <td>
-            <select name="partyhall" id="partyhall" class="form-control">
+            <select name="partyhall" id="partyhall" class="form-control" required>
             <option value="select">- chọn hội trường -
             <?php 
             //loop through partyhalls table rows
@@ -118,13 +146,13 @@ require_once('connection/config.php');
             </td>
         </tr>
         <tr>
-            <td><b>Ngày:</b></td><td><input type="date" name="date" id="date" class="form-control" /></td></tr>
-        <tr>
-            <td><b>Thời gian:</b></td><td><input type="time" name="time" id="time" class="form-control" />
+            <td><b>Ngày:</b></td><td><input type="date" name="date" id="date" class="form-control" style="margin-top: 10px" required/></td></tr>
+        <tr style="margin-top: 10px">
+            <td><b>Thời gian:</b></td><td><input type="time" name="time" id="time" class="form-control" style="margin-top: 10px" required/>
             </td>
         </tr>
         <tr>
-            <td colspan="2" align="center"><input type="submit" value="Đặt" class="btn btn-primary"></td>
+            <td colspan="2" align="center"><input type="button" value="Đặt" class="btn btn-primary" onclick="makeHall()" style="margin-top: 10px"></td>
         </tr>
     </table>
 </form>
