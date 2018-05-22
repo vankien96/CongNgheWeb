@@ -51,7 +51,10 @@ echo "<td>" . $row['total']."</td>";
 echo "<td>" . $row['delivery_date']."</td>";
 echo "<td>" . $row['address']."</td>";
 echo "<td>" . $row['phone']."</td>";
-echo '<td><a href="delete-order.php?id=' . $row['order_id'] . '">Xóa đơn hàng</a></td>';
+echo '<td>
+		<a href="delete-order.php?id=' . $row['order_id'] . '">Xác nhận</a>
+		<a href="accept-order.php?id=' . $row['order_id'] . '">Xóa</a>
+	</td>';
 echo "</tr>";
 }
 mysqli_free_result($result);
