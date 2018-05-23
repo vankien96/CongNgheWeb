@@ -76,7 +76,7 @@ echo "<tr>";
 echo '<td><img src=../images/'. $row['special_photo']. ' width="80" height="70"></td>';
 echo "<td>" . $row['special_name']."</td>";
 echo "<td width='180' align='left'>" . $row['special_description']."</td>";
-echo "<td>" . $symbol['currency_symbol']. "" . $row['special_price']."</td>";
+echo "<td>" . $row['special_price']."" . $symbol['currency_symbol']. "</td>";
 echo "<td>" . $row['special_start_date']."</td>";
 echo "<td>" . $row['special_end_date']."</td>";
 echo '<td><a href="delete-special.php?id=' . $row['special_id'] . '">Xóa ưu đãi</a></td>';

@@ -6,11 +6,11 @@
 require_once('connection/config.php');
 
 //selecting all records from the reservations_details table based on table ids. Return an error if there are no records in the table
-$tables=mysqli_query($db,"SELECT members.firstname, members.lastname, reservations_details.ReservationID, reservations_details.table_id, reservations_details.Reserve_Date, reservations_details.Reserve_Time, tables.table_id, tables.table_name FROM members, reservations_details, tables WHERE members.member_id = reservations_details.member_id AND tables.table_id=reservations_details.table_id")
+$tables=mysqli_query($db,"SELECT members.firstname, members.lastname, reservations_details.ReservationID, reservations_details.table_id, reservations_details.Reserve_Date, reservations_details.Reserve_Time, tables.table_id, tables.table_name FROM members, reservations_details, tables WHERE members.member_id = reservations_details.member_id AND tables.table_id=reservations_details.table_id AND reservations_details.flag = '0'")
 or die("There are no records to display ... \n" . mysql_error($db)); 
 
 //selecting all records from the reservations_details table based on partyhall ids. Return an error if there are no records in the table
-$partyhalls=mysqli_query($db,"SELECT members.firstname, members.lastname, reservations_details.ReservationID, reservations_details.partyhall_id, reservations_details.Reserve_Date, reservations_details.Reserve_Time, partyhalls.partyhall_id, partyhalls.partyhall_name FROM members, reservations_details, partyhalls WHERE members.member_id = reservations_details.member_id AND partyhalls.partyhall_id=reservations_details.partyhall_id")
+$partyhalls=mysqli_query($db,"SELECT members.firstname, members.lastname, reservations_details.ReservationID, reservations_details.partyhall_id, reservations_details.Reserve_Date, reservations_details.Reserve_Time, partyhalls.partyhall_id, partyhalls.partyhall_name FROM members, reservations_details, partyhalls WHERE members.member_id = reservations_details.member_id AND partyhalls.partyhall_id=reservations_details.partyhall_id AND reservations_details.flag = '0'")
 or die("There are no records to display ... \n" . mysql_error($db)); 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -49,7 +49,10 @@ echo "<td>" . $row['lastname']."</td>";
 echo "<td>" . $row['table_name']."</td>";
 echo "<td>" . $row['Reserve_Date']."</td>";
 echo "<td>" . $row['Reserve_Time']."</td>";
-echo '<td><a href="delete-reservation.php?id=' . $row['ReservationID'] . '">Xóa</a></td>';
+echo '<td>
+		<a href="accept-reservation.php?id=' . $row['ReservationID'] . '">Xác nhận</a>
+		<a href="delete-reservation.php?id=' . $row['ReservationID'] . '">Xóa</a>
+	</td>';
 echo "</tr>";
 }
 mysqli_free_result($tables);
@@ -79,7 +82,10 @@ echo "<td>" . $row['lastname']."</td>";
 echo "<td>" . $row['partyhall_name']."</td>";
 echo "<td>" . $row['Reserve_Date']."</td>";
 echo "<td>" . $row['Reserve_Time']."</td>";
-echo '<td><a href="delete-reservation.php?id=' . $row['ReservationID'] . '">Xóa</a></td>';
+echo '<td>
+		<a href="accept-reservation.php?id=' . $row['ReservationID'] . '">Xác nhận</a>
+		<a href="delete-reservation.php?id=' . $row['ReservationID'] . '">Xóa</a>
+		</td>';
 echo "</tr>";
 }
 mysqli_free_result($partyhalls);
