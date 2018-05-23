@@ -83,7 +83,7 @@
     <tr><td><h5>856 Tôn Đức Thắng, Phường Hòa Khánh, Quận Liên Chiểu, Đà Nẵng</h5></td></tr>
     <tr><td><h5>Hotlines: 02363568954</h5></td></tr>
     <tr><td><h5>Mobiles: 0901234567/0909909909</h5></td></tr>
-    <tr><td><h5>Email: lk@restaurant.cu.to</h5></td></tr>
+    <tr><td><h5>Email: lk@restaurant.dn</h5></td></tr>
   </table>
   </div>
 </div>

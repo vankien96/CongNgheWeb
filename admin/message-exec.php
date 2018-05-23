@@ -1,27 +1,7 @@
 <?php
 	//checking connection and connecting to a database
 	require_once('connection/config.php');
-	
- 
- //Function to sanitize values received from the form. Prevents SQL injection
-	function clean($str) {
-		$str = @trim($str);
-		if(get_magic_quotes_gpc()) {
-			$str = stripslashes($str);
-		}
-		return mysqli_real_escape_string($str);
-	}
-	
-    //retrive a timezone from the timezones table
-    // //define a default value for flag_1
-    // $flag_1 = 1;
-    // $timezones=mysqli_query($db,"SELECT * FROM timezones WHERE flag='$flag_1'")
-    // or die("Something is wrong. ".mysqli_error($db));
-    
-    // $row=mysqli_fetch_assoc($timezones); //gets retrieved row
-    
-    // $active_reference = $row['timezone_reference']; //gets active timezone
-    
+
     date_default_timezone_set('Asia/Ho_Chi_Minh'); //sets the default timezone for use
     
     $current_date = date("Y-m-d"); //gets the current date

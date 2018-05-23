@@ -74,12 +74,6 @@
         </ul>
       </div>
     </nav>
-  <div id="header" align="center">
-    <div id="SearchType" class="form-group" style="width: 400px" align="center">
-        <input class = "form-control" type="text" name="search" placeholder="Bạn muốn ăn gì hôm nay nào?">
-        <button class="btn btn-primary" type="submit" value="submit" name="submit" style="margin-top: 10px">Tìm Kiếm</button>
-    </div>
-  </div>
   <h1>Register</h1>
 <div id="center" style="width: 350px">
   <form id="registerForm">

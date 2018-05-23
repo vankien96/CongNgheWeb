@@ -4,29 +4,18 @@
     
     //Include database connection details
     require_once('connection/config.php');
-    
-    
-    //Function to sanitize values received from the form. Prevents SQL injection
-    function clean($str) {
-        $str = @trim($str);
-        if(get_magic_quotes_gpc()) {
-            $str = stripslashes($str);
-        }
-        return mysql_real_escape_string($str);
-    }
-    
+ 
     //Sanitize the POST values
-    $name = clean($_POST['name']);
-
+    $name = $_POST['name'];
     //Create INSERT query
     $qry = "INSERT INTO tables(table_name) VALUES('$name')";
-    $result = @mysql_query($qry);
+    $result = @mysqli_query($db,$qry);
     
     //Check whether the query was successful or not
     if($result) {
-        header("location: options.php");
+        header("location: reservation.php");
         exit();
     }else {
-        die("Query failed " . mysql_error());
+        die("Query failed " . mysqli_error($db));
     }
  ?>

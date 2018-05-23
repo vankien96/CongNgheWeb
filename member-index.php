@@ -139,7 +139,7 @@ $result=mysqli_query($db, "SELECT * FROM orders_details,cart_details,food_detail
 </div>
 </div>
 <div id="footer">
-    <div class="bottom_menu"><a href="index.php">Trang chủ</a>  |  <a href="aboutus.php">Về chúng tôi</a>  |  <a href="specialdeals.php">Ưu đãi đặc biệt</a>  |  <a href="foodzone.php">Food Zone</a>  |  <a href="#">Chương trình liên kết</a> | <br>
+    <div class="bottom_menu"><a href="index.php">Trang chủ</a>  |  <a href="aboutus.php">Về chúng tôi</a>  |  <a href="specialdeals.php">Ưu đãi đặc biệt</a>  |  <a href="foodzone.php">Khu Ẩm Thực</a>  |  <a href="#">Chương trình liên kết</a> | <br>
   | <a href="admin/index.php" target="_blank">Administrator</a> |</div>
   
   <div class="bottom_addr">&copy; 2018 LK Restaurant. All Rights Reserved</div>

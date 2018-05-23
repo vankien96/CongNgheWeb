@@ -4,18 +4,7 @@
     
     //Include database connection details
     require_once('connection/config.php');
-    
-    
-    
-    //Function to sanitize values received from the form. Prevents SQL injection
-    function clean($str) {
-        $str = @trim($str);
-        if(get_magic_quotes_gpc()) {
-            $str = stripslashes($str);
-        }
-        return mysqli_real_escape_string($str);
-    }
-    
+   
     //setup a directory where images will be saved 
     $target = "../images/"; 
     $target = $target . basename( $_FILES['photo']['name']); 
